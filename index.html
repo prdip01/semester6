@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 6 Resources</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #7e38e9;
+            --dark-color: #6caef0;
+            --light-color: #ecf0f1;
+            --accent-color: #e63a8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 8s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            margin: 1.5rem auto;
+            max-width: 600px;
+        }
+        
+        #search {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+        
+        .nav-link {
+            padding: 1rem 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        h2 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+        }
+        
+        .view-all {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .view-all:hover {
+            text-decoration: underline;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            height: 150px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .card-content {
+            padding: 1.2rem;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .card-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .subject-list {
+            list-style: none;
+        }
+        
+        .subject-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .subject-item:last-child {
+            border-bottom: none;
+        }
+        
+        .subject-name {
+            font-weight: 500;
+        }
+        
+        .subject-links a {
+            margin-left: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .quick-link {
+            padding: 0.8rem 1.2rem;
+            background-color: var(--light-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .countdown {
+            background: linear-gradient(135deg, var(--dark-color), #34495e);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 6px;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-link {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>All CSE Semester 6 Resources</h1>
+            <p class="subtitle">All study materials in one place made by Pradeep Kumar </p>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search for when rcb win the cup ?...">
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#notes" class="nav-link active">Notes</a>
+            <a href="#syllabus" class="nav-link">Syllabus</a>
+            <a href="#pyqs" class="nav-link">PYQs</a>
+            <a href="#books" class="nav-link">Books</a>
+            <a href="#links" class="nav-link">Important Links</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="countdown">
+            <div class="countdown-title">Semester Exams Might Begin In</div>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="notes" class="section">
+            <div class="section-header">
+                <h2>Notes</h2>
+                <a href="" class="view-all">View All</a>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">🌐</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Computer Networks</h3>
+                        <p class="card-desc">Complete notes with diagrams and examples for all topics.</p>
+                        <a href="https://drive.google.com/file/d/1sex81zr0CXbrGrLtGlwm4HiQtka-CkKk/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📊</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Data Science</h3>
+                        <p class="card-desc">Statistical methods, machine learning, and data visualization.</p>
+                        <a href="https://drive.google.com/file/d/19vFHPVNVnb3TCWSu0c176A8egxJslKnm/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">🖼️</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Image Processing</h3>
+                        <p class="card-desc">Digital image fundamentals and processing techniques.</p>
+                        <a href="https://drive.google.com/file/d/1ZJqv6BkcCR6ksU4Swlq3eo3qgHumpbtf/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">💻</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Soft computing </h3>
+                        <p class="card-desc">soon added ...</p>
+                        <a href="https://drive.google.com/file/d/17KcN_vaM2R5ono0cSHEmkjOEsOOnkMq0/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📶</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Information Retrieval </h3>
+                        <p class="card-desc"> soon added </p>
+                        <a href="https://drive.google.com/file/d/1-M7Gt5a0F3Yt6pW8G_KrFQa3jWh61Ntr/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="syllabus" class="section">
+            <div class="section-header">
+                <h2>Syllabus</h2>
+                <a href="" class="view-all">View All</a>
+            </div>
+            <ul class="subject-list">
+                <li class="subject-item">
+                    <span class="subject-name">ALL SUBJECTS </span>
+                    <span class="subject-links">
+                        <a href="https://drive.google.com/file/d/1__7o3hf_pTY0qAjwVXG1w3krddR3jPOi/view?usp=drivesdk">PDF</a>
+                       
+                   
+                    </span>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="pyqs" class="section">
+            <div class="section-header">
+                <h2>Previous Year Questions</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">🌐</div>
+                    <div class="card-content">
+                        <h3 class="card-title"> 2023</h3>
+                        <p class="card-desc">JUT PYQS.</p>
+                        <a href="https://drive.google.com/file/d/1WYQ9RVAMVYfk9_RNhBn6twMI_vtcBUja/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📊</div>
+                    <div class="card-content">
+                        <h3 class="card-title">2022</h3>
+                        <p class="card-desc">ONLY PYQS.</p>
+                        <a href="https://www.studocu.com/in/u/100881501?sid=547369841744178497" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">🖼️</div>
+                    <div class="card-content">
+                        <h3 class="card-title">MID BIT SINDRI </h3>
+                        <p class="card-desc"> question papers with  without explanations.</p>
+                        <a href="https://drive.google.com/file/d/1igp9wYt3ddGrUGNP9bfnMRMOQUzPrwki/view?usp=drivesdk" class="btn">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">💻</div>
+                    <div class="card-content">
+                        <h3 class="card-title">OTHER  PYQs</h3>
+                        <p class="card-desc">ADDDED SOOOOOONNN.</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+                
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="books" class="section">
+            <div class="section-header">
+                <h2>Recommended Books</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">📚</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Computer Networks</h3>
+                        <p class="card-desc">PDF</p>
+                        
+                        <a href="https://dpvipracollege.in/wp-content/uploads/2023/01/Data-Communications-and-Networking-By-Behrouz-A.Forouzan.pdf" class="btn btn-outline">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📖</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Data Science</h3>
+                        <p class="card-desc">PDF </p>
+                        
+                        <a href="https://www.cs.cornell.edu/jeh/book.pdf?utm_source=chatgpt.com" class="btn btn-outline">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📘</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Image Processing</h3>
+                        <p class="card-desc"> PDF</p>
+                        
+                        <a href="https://archive.org/details/digitalimageproc0003gonz/page/n3/mode/2up?utm_source=chatgpt.com" class="btn btn-outline">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📗</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Soft computing </h3>
+                        <p class="card-desc">PDF</p>
+                       
+                        <a href="https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf?utm_source=chatgpt.com" class="btn btn-outline">Download</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">📙</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Information Retrieval </h3>
+                        <p class="card-desc">PDF</p>
+                
+                        <a href="https://pg.its.edu.in/sites/default/files/KCA043%20Internet%20of%20things%20-IoT%20by%20Raj%20Kamal%20Text%20Book.pdf?utm_source=chatgpt.com" class="btn btn-outline">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="links" class="section">
+            <div class="section-header">
+                <h2>Important Links</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="quick-links">
+                <a href="https://gecpalamu.ac.in" class="quick-link">GECP , Website  </a>
+                <a href="https://drive.google.com/drive/folders/1NbHjEUgSQPXuiQzWvv4GOBK3ZcRWD_Iy" class="quick-link">all year pyqsjut drive</a>
+                <a href="https://jutgyanjyoti.jharkhand.gov.in" class="quick-link">Jut Website</a>
+                
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Semester 6 CSE  Resources For 3rd Year </h3>
+            <p> please follow me on  Linkedln</p>
+            
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/pradeep-kumar-53a9502a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="footer-link">Pradeep Kumar </a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="https://github.com/prdip01" class="social-icon">📱 </a>
+                <a href="https://pradeepkummar.netlify.app" class="social-icon">📧</a>
+                <a href="https://www.instagram.com/imprdip01?igsh=YjJqYTc5cTFjemFk&utm_source=qr" class="social-icon">💻</a>
+        
+            </div>
+            
+            <p class=" no copyright i have ">© sab kuch free ka hai, internet se uthaya gaya hai. koi rights reserved nahi hain.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const examDate = new Date(2025, 8, 15); // DATE CHNAGE 
+
+const now = new Date().getTime();
+const distance = examDate.getTime() - now;
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
+document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
+document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
+document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
+        }
+        
+        // Update the countdown every 1 second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Remove active class from all nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Scroll to target
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        
+        // Highlight nav link based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
